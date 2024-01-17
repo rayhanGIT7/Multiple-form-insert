@@ -25,8 +25,7 @@ if(isset($_SESSION['password'])){
     <?php
     include 'db.php';
 
-    $show_num = "";
-    $show_email = "";
+   
 
     ?>
     <!-- Button trigger modal -->
