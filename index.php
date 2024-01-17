@@ -185,7 +185,15 @@ if(isset($_SESSION['password'])){
                             <td><?php echo $data["address"]; ?></td>
                             <td><?php echo $data["date"]; ?></td>
                             <td><?php echo $data["gender"]; ?></td>
-                            <td><img src="image/<?php echo $data['image']; ?>" style="max-height: 50px;" /></td>
+                          
+                            <?php
+                            $imageData = base64_decode($data['image']);
+
+                            $finfo = new finfo(FILEINFO_MIME_TYPE);
+                            $imageType = $finfo->buffer($imageData);
+                            ?>
+
+                            <td><img src='data:<?php echo $imageType; ?>;base64,<?php echo base64_encode($imageData); ?>' style='max-width: 100px; max-height: 100px;'></td>
 
                             <td>
                                 <a class="btn btn-info" href="edit.php?id=<?php echo $data["id"]; ?>">Edit</a>

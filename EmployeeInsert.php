@@ -16,15 +16,15 @@ if (isset($_POST['submit'])) {
         'gender' => $gender
     );
 
-    // Handle image uploads
+    /// Handle image uploads
     $uploadedImages = array();
-    $imageFolder = 'image/';
+
 
     foreach ($_FILES['image']['tmp_name'] as $key => $tmpName) {
         $imageName = $_FILES['image']['name'][$key];
-        $imagePath = $imageFolder . $imageName;
-        move_uploaded_file($tmpName, $imagePath);
-        $uploadedImages[] = $imageName;
+        $imageData = base64_encode(file_get_contents($tmpName));
+      
+        $uploadedImages[] = $imageData;
     }
 
     foreach ($dynamicData['name'] as $key => $value) {
